@@ -3,7 +3,6 @@ const lines = document.querySelectorAll('#line');
 const slider = document.getElementById('slider');
 const list = document.getElementById('list');
 let clicked = false;
-console.log(lines)
 hamburger.addEventListener('click', () => {
     clicked = !clicked
     switch (clicked) {
