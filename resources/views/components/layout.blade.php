@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Retzetovici</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/glide.core.min.css'])
+    @vite(['resources/css/glide.theme.min.css'])
 </head>
 <body>
     
@@ -23,14 +26,14 @@
  
     </div>
     <!--hamburger slide menu-->
-    <div id="slider" class="bg-gradient-to-b lg:hidden from-accent to-accentLight w-0 absolute min-h-screen left-0 top-[100%] transition-all duration-500 z-10 ">
+    <div id="slider" class="bg-gradient-to-b lg:hidden font-semibold from-accent to-accentLight w-0 absolute min-h-screen left-0 top-[100%] transition-all duration-500 z-10 ">
         <ul id="list" class="hidden flex-col items-center  justify-center gap-5">
             <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Adauga reteta noua</a>
+                <a href="#"> Adaugă rețetă nouă</a>
                 <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
             </li>
             <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Exploreaza retete populare</a>
+                <a href="#"> Explorează rețete populare</a>
                 <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
                 </li>
             <li class="text-xl text-background drop-shadow-xl flex flex-col group">
@@ -44,14 +47,14 @@
         </ul>
     </div>
     <!--Normal navigation-->
-    <nav class="mr-10 hidden lg:block">
+    <nav class="mr-10 hidden lg:block font-semibold">
         <ul class="flex justify-center gap-5">
             <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Adauga reteta noua</a>
+                <a href="#"> Adaugă rețetă nouă</a>
                 <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
             </li>
             <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Exploreaza retete populare</a>
+                <a href="#"> Explorează rețete populare</a>
                 <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
                 </li>
             <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
