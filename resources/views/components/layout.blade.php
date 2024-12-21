@@ -9,6 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/css/glide.core.min.css'])
     @vite(['resources/css/glide.theme.min.css'])
+    
 </head>
 <body>
     
@@ -27,45 +28,11 @@
     </div>
     <!--hamburger slide menu-->
     <div id="slider" class="bg-gradient-to-b lg:hidden font-semibold from-accent to-accentLight w-0 absolute min-h-screen left-0 top-[100%] transition-all duration-500 z-10 ">
-        <ul id="list" class="hidden flex-col items-center  justify-center gap-5">
-            <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Adaugă rețetă nouă</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-            </li>
-            <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Explorează rețete populare</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-                </li>
-            <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Categorii</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-                </li>
-            <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Contul meu</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-                </li>
-        </ul>
+            <x-header-nav type='mobile'></x-header-nav>
     </div>
     <!--Normal navigation-->
     <nav class="mr-10 hidden lg:block font-semibold">
-        <ul class="flex justify-center gap-5">
-            <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Adaugă rețetă nouă</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-            </li>
-            <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Explorează rețete populare</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-                </li>
-            <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Categorii</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-                </li>
-            <li class="text-lg xl:text-xl text-background drop-shadow-xl flex flex-col group">
-                <a href="#"> Contul meu</a>
-                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
-                </li>
-        </ul>
+        <x-header-nav type='desktop'></x-header-nav>
     </nav>
 </header>
 <main class="w-full min-h-screen bg-gradient-to-tl from-background to-lightBlue-100">
