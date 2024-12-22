@@ -16,7 +16,7 @@
                
                <div class="flex flex-col gap-10 items-start absolute top-[40%] md:top-[30%]  px-5 lg:left-[30%]">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Alătură-te comunității noastre culinare. Creează-ți contul și începe să aduni colecția ta de rețete!</p>
-                    <form action="" method="GET">
+                    <form action="/login" method="GET">
                         <button type="submit" class="bg-green-700 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] rounded-lg px-4 py-2 text-lg md:text-2xl lg:text-2xl transition-all hover:bg-green-800 shadow-2xl hover:translate-x-4">Înregistrează-te acum</button>
                     </form>
                 </div>
