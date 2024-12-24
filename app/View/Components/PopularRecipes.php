@@ -11,9 +11,10 @@ class PopularRecipes extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public array $recipes)
+    //public array $recipes;
+    public function __construct()
     {
-    $this->recipes =$recipes;
+    //$this->recipes =$recipes;
     }
 
     /**
