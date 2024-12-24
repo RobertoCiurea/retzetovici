@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
@@ -39,3 +40,8 @@ Route::middleware(['alreadyLoggedIn'])->group(function(){
 Route::post('/register', [RegisterController::class, "store"]);
 Route::post('/login', [LoginController::class, "login"]);
 Route::post('/logout', [LogOutController::class, "logout"]);
+
+Route::put("/updateName/{userId}", [UserController::class, "updateName"]);
+Route::put("/updateEmail/{userId}", [UserController::class, "updateEmail"]);
+
+Route::delete("/deleteUser/{userId}", [UserController::class, "delete"]);
