@@ -1,10 +1,11 @@
 <div>
   <x-layout>
-    <div class="flex h-full">
+    <div class="flex flex-col sm:flex-row ">
       <!--Left section (side-menu)-->
-      <div class="flex flex-col justify-between  bg-accentLight px-10 text-gray-100  py-5 h-[65%] m-10 rounded-lg ">
+      <div class="flex flex-col md:justify-between  bg-accentLight px-10 text-gray-100  py-5 h-[65%] m-10 rounded-lg ">
 
-        <div class="flex flex-col gap-10 border-b-2 border-red-400">
+          <!--Section without log out button-->
+        <div class="flex flex-col mb-20 md:mb-10 gap-10 border-b-2 border-red-400">
                  <!--Welcome message-->
           <div class="text-lg font-semibold border-b-2 text-white border-red-400">Bunt venit {{auth()->user()->name}}</div>
                  <!--Account details-->
@@ -40,10 +41,10 @@
           </div>
        </div>
        <!--Content-->
-       <div class="flex flex-col mt-10">
+       <div class="flex flex-col w-full mt-10">
         @switch($content)
             @case('account-details')
-                Detalii cont
+                <x-account-details></x-account-details>
                 @break
             @case('my-recipes')
                 Retetele mele
