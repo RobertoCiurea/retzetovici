@@ -31,6 +31,6 @@ class RegisterController extends Controller
             'password'=>Hash::make($request->password)
         ]);
             Auth::login($user);
-            return redirect('/my-account');
+            return redirect('/my-account?content=account-details');
     }
 }
