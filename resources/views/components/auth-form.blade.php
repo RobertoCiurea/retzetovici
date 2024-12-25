@@ -1,8 +1,11 @@
 
 <form action="{{$action}}" method="POST"  class="flex flex-col items-center gap-10">
     @csrf
-    @session('error')
-        <span class="text-sm text-red-600">{{$value}}</span>
+    @session('login_error')
+    <span class="text-red-600 text-sm">
+
+        {{session('login_error')}}
+    </span>
     @endsession
         
     <div class="flex flex-col gap-2">

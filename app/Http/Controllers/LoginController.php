@@ -22,7 +22,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             return redirect('/my-account?content=account-details');
 
-        }else return redirect('/login')->withErrors(['login_error'=>'Nume sau parola gresita. Incearca din nou!', 'custom']);
+        }else return redirect('/login')->with(['login_error'=>'Nume sau parola gresita. Incearca din nou!', 'custom']);
     }
  
 }
