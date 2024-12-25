@@ -27,6 +27,14 @@ Route::middleware(['auth'])->group(function(){
         //get user's saved recipes from db
         return redirect('my-account?content=saved-recipes');
     });
+    Route::get("/add-recipe", function(){
+        return view("add-recipe");
+    });
+
+    
+Route::put("/user/{userId}/update", [UserController::class, "update"])->name('user.update');
+
+Route::delete("/user/{userId}/delete", [UserController::class, "delete"])->name('user.delete');
 });
 
 Route::middleware(['alreadyLoggedIn'])->group(function(){
@@ -40,8 +48,3 @@ Route::middleware(['alreadyLoggedIn'])->group(function(){
 Route::post('/register', [RegisterController::class, "store"]);
 Route::post('/login', [LoginController::class, "login"]);
 Route::post('/logout', [LogOutController::class, "logout"]);
-
-Route::put("/updateName/{userId}", [UserController::class, "updateName"]);
-Route::put("/updateEmail/{userId}", [UserController::class, "updateEmail"]);
-
-Route::delete("/deleteUser/{userId}", [UserController::class, "delete"]);
