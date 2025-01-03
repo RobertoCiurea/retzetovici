@@ -7,6 +7,14 @@
         {{session('login_error')}}
     </span>
     @endsession
+    
+    @session('success')
+    <span class="text-green-600 text-sm">
+
+        {{session('success')}}
+    </span>
+    @endsession
+
         
     <div class="flex flex-col gap-2">
         <label for="name" class="font-kanit text-sm">Nume utilizator</label>
