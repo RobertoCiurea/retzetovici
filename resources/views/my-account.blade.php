@@ -57,5 +57,8 @@
         @endswitch
        </div>
     </div>
+    @push('scripts')
+        @vite('resources/js/account.js')
+    @endpush
   </x-layout>
 </div>
