@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogOutController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 
@@ -47,4 +48,5 @@ Route::middleware(['alreadyLoggedIn'])->group(function(){
 
 Route::post('/register', [RegisterController::class, "store"]);
 Route::post('/login', [LoginController::class, "login"]);
-Route::post('/logout', [LogOutController::class, "logout"]);
+Route::post('/logout', [LogOutController::class, "logout"])->name("logout");
+Route::post('/create-recipe', [RecipeController::class, "store" ]);
