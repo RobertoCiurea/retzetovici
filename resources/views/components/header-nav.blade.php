@@ -4,8 +4,10 @@
     @endif  
     class="{{$type=== 'mobile' ?'hidden flex-col items-center  justify-center gap-5' :'flex justify-center gap-5'}}">
         <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-            <a href="#"> Adaugă rețetă nouă</a>
-            <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
+            <form action="/add-recipe" method="GET">
+                <button type="submit">Adaugă rețetă nouă</button>
+                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
+            </form>
         </li>
         <li class="text-xl text-background drop-shadow-xl flex flex-col group">
             <button type="button" id="popular-recipes-button">
