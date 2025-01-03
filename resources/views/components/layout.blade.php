@@ -9,6 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/css/glide.core.min.css'])
     @vite(['resources/css/glide.theme.min.css'])
+    @stack('scripts')
     
 </head>
 <body>
