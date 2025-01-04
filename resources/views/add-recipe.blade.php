@@ -155,7 +155,33 @@
                         <option value="high_protein">High Protein</option>
                         <option value="grill">Grătar</option>
                         <option value="baked">Copt</option>
-                        <option value="seafood">Fructe de mare</option>    
+                        <option value="seafood">Fructe de Mare</option>
+                        <option value="dessert">Desert</option>
+                        <option value="drink">Băutură</option>
+                        <option value="soup">Supă</option>
+                        <option value="stew">Tocană</option>
+                        <option value="bread">Pâine</option>
+                        <option value="pastry">Patiserie</option>
+                        <option value="pasta">Paste</option>
+                        <option value="rice">Orez</option>
+                        <option value="comfort_food">Comfort Food</option>
+                        <option value="spicy">Picant</option>
+                        <option value="sweet">Dulce</option>
+                        <option value="sour">Acru</option>
+                        <option value="quick">Rapid</option>
+                        <option value="healthy">Sănătos</option>
+                        <option value="budget_friendly">Economic</option>
+                        <option value="holiday">Sărbători</option>
+                        <option value="christmas">Crăciun</option>
+                        <option value="easter">Paște</option>
+                        <option value="valentines">Valentine's Day</option>
+                        <option value="bbq">BBQ</option>
+                        <option value="asian">Asiatic</option>
+                        <option value="italian">Italian</option>
+                        <option value="mexican">Mexican</option>
+                        <option value="indian">Indian</option>
+                        <option value="mediterranean">Mediterranean</option>
+                        <option value="fusion">Fusion</option>
                     </select>
                 </div>
                 <section id="tags" class="flex flex-col gap-5">
