@@ -103,7 +103,6 @@ button.addEventListener("click", () => {
 
 function updateCounters() {
     Array.from(section.children).forEach((child, index) => {
-        console.log(child)
         child.children[0].textContent = `Eticheta ${index + 2}`
     })
 }
