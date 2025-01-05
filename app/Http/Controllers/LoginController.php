@@ -20,7 +20,7 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('name','password');
         if(Auth::attempt($credentials)){
-            return redirect('/my-account?content=account-details');
+            return redirect()->intended('/my-account?content=account-details');
 
         }else return redirect('/login')->with(['login_error'=>'Nume sau parola gresita. Incearca din nou!', 'custom']);
     }
