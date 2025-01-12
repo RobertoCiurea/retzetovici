@@ -38,6 +38,7 @@ it('stores a recipe with valid data', function () {
         'category' => $data['category'],
         'duration' => $data['duration'],
         'difficulty' => $data['difficulty'],
+        "username"=>$this->user->name,
         'user_id' => $this->user->id,
     ]);
     // Assert that there is a file in public storage
