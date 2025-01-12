@@ -49,4 +49,4 @@ Route::middleware(['alreadyLoggedIn'])->group(function(){
 Route::post('/register', [RegisterController::class, "store"]);
 Route::post('/login', [LoginController::class, "login"]);
 Route::post('/logout', [LogOutController::class, "logout"])->name("logout");
-Route::post('/create-recipe', [RecipeController::class, "store" ]);
+Route::post('/create-recipe', [RecipeController::class, "store" ])->name('create-recipe');
