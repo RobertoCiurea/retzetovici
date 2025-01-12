@@ -2,6 +2,7 @@
 
     <div class="w-full flex flex-col pt-10 items-center">
         <h1 class="text-xl md:text-3xl text-black font-quicksand font-semibold">Adaugă rețetă</h1>
+
         <form action="{{route('create-recipe')}}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-14 pt-10 ">
             @csrf
             @session('success')
@@ -118,7 +119,7 @@
                   
             </div>
             <!--Image-->
-            <div class="flex flex-col items-start gap-2">
+            <div id="image-div" class="flex flex-col items-start gap-2">
 
                 @error('image')
                 <span class="text-sm text-red-600">{{$message}}</span>
@@ -140,7 +141,7 @@
 
                 <div class="flex flex-col gap-2">
                     <label for="tag[]" class="font-semibold underline text-black">Eticheta 1</label>
-                    <select type="text" name="tag[]" placeholder="Eticheta 1" class="px-2 py-1 rounded-lg bg-white text-black shadow xl placeholder:text-gray-400 @error('tags') border-2 border-red-600 @enderror" required>
+                    <select type="text" name="tags[]" placeholder="Eticheta 1" class="px-2 py-1 rounded-lg bg-white text-black shadow xl placeholder:text-gray-400 @error('tags') border-2 border-red-600 @enderror" required>
                         <option value="appetizer">Aperitiv</option>
                         <option value="salad">Salată</option>
                         <option value="snack">Gustare</option>
@@ -199,5 +200,3 @@
         @vite('resources/js/file-input.js')    
     @endpush
 </x-layout>
-
-// Mock the necessary reCAPTCHA validation
