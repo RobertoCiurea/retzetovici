@@ -14,17 +14,27 @@ class RecipeCard extends Component
     public string $image;
     public string $title;
     public string $category;
+    public string $username;
+    public string $date;
+    public string $difficulty;
     public int $views;
     public int $likes;
     public int $duration;
-    public function __construct($image, $title, $category, $views, $likes, $duration)
+    public array $ingredients;
+    public array $tags;
+    public function __construct($image, $title, $category, $username, $date, $difficulty, $views, $likes, $duration, $tags, $ingredients)
     {
         $this->image =$image;
         $this->title =$title;
         $this->category =$category;
         $this->views =$views;
+        $this->username = $username;
+        $this->difficulty = $difficulty;
+        $this->date = $date;
         $this->likes =$likes;
         $this->duration =$duration;
+        $this->ingredients = $ingredients;
+        $this->tags = $tags;
     }
 
     /**
