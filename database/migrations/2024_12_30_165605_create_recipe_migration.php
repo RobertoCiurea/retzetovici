@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
+            $table->integer("views")->default(0);
+            $table->integer("likes")->default(0);
             $table->text('description');
             $table->string('category');
             $table->json('ingredients')->nullable();
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->string('difficulty');
             $table->string("image")->nullable();
             $table->json('tags')->nullable();
+            $table->string("username");
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             
         });

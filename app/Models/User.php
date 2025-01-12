@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "recipe_counter",
+        "likes",
+        "saved_recipes"
     ];
 
     /**
