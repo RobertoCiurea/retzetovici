@@ -68,7 +68,7 @@ function createTag() {
     image.className = "cursor-pointer";
 
     const select = document.createElement('select');
-    select.name = "tag[]";
+    select.name = "tags[]";
     select.className = "px-2 py-1 rounded-lg bg-white text-black shadow xl placeholder:text-gray-400";
 
     recipeTags.forEach((tag) => {
