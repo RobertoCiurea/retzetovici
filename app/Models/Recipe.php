@@ -16,6 +16,9 @@ class Recipe extends Model
         'difficulty',
         'image',
         'tags',
+        'username',
+        'views',
+        'likes',
         'user_id'
     ];
     
