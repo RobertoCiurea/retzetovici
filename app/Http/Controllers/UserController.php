@@ -3,11 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $content = $request->get('content');
+        $userId = Auth::user()->id; 
+        $user = User::findOrFail($userId);
+        $recipes = $user->recipes()->get();
+        $savedRecipes= $user->savedRecipes()->get();
+        return view('my-account', compact("content", "user" ,"recipes", "savedRecipes"));
+    }
 
     public function update($userId, Request $request): RedirectResponse
     {
