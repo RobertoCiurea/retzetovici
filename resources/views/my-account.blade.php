@@ -19,14 +19,14 @@
           <div class="hover:bg-red-400 group transition-colors px-2 pt-2 flex justify-center items-center text-lg">
             <form action="/my-recipes" method="GET" class="flex gap-2 items-center">
               <img src="{{url('icons/my-recipes-icon.svg')}}" width="35" alt="Retetele mele">
-              <button type="submit" class="group-hover:text-white transition-colors">Retetele mele</button>
+              <button type="submit" class="group-hover:text-white transition-colors">Rețetele mele</button>
             </form>
           </div>
                   <!--Saved recipes-->
           <div class="hover:bg-red-400 group transition-colors px-2 pt-2 flex justify-center items-center text-lg">
             <form action="/saved-recipes" method="GET" class="flex gap-2 items-center">
               <img src="{{url('icons/saved-recipes-icon.svg')}}" width="35" alt="Retete salvate">
-              <button type="submit" class="group-hover:text-white transition-colors">Retete salvate</button>
+              <button type="submit" class="group-hover:text-white transition-colors">Rețete salvate</button>
             </form>
           </div>
 
@@ -36,21 +36,24 @@
             <form action="/logout" method="POST" class="flex gap-2 items-center">
               @csrf
               <img src="{{url('icons/log-out-icon.svg')}}" width="30" alt="Iesire din cont">
-              <button type="submit" class="group-hover:text-white transition-colors">Iesire din cont</button>
+              <button type="submit" class="group-hover:text-white transition-colors">Ieșire din cont</button>
             </form>
           </div>
        </div>
        <!--Content-->
        <div class="flex flex-col w-full mt-10">
+
         @switch($content)
             @case('account-details')
-                <x-account-details></x-account-details>
+                <x-account-details :user="$user"></x-account-details>
+       
                 @break
             @case('my-recipes')
-                Retetele mele
+              <x-recipes-grid :recipes="$recipes" :title="'Rețete mele'"></x-recipes-grid>
+    
                 @break
             @case('saved-recipes')
-                Retete salvate
+            <x-recipes-grid :recipes="$savedRecipes" :title="'Rețete salvate'"></x-recipes-grid>
                 @break
         
                 
