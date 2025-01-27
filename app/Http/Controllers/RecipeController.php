@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Laravel\Facades\Image;
+use App\Models\Comment;
+use App\Models\SavedRecipe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
+
+use function PHPUnit\Framework\isNull;
 
 class RecipeController extends Controller
 {
@@ -34,7 +39,7 @@ class RecipeController extends Controller
         $image= Image::Read($incomingFields['image']);
         $imageName = time().'.'.$incomingFields['image']->getClientOriginalExtension();
 
-        $resizedImage = $image->resize(400, 260, function($constraint){
+        $resizedImage = $image->resize(800, 400, function($constraint){
             $constraint->aspectRatio();
             $constraint->upsize(); 
         });
@@ -46,7 +51,7 @@ class RecipeController extends Controller
 
 
         $userId = Auth::user()->id;
-        $user = User::find($userId);
+        $user = User::findOrFail($userId);
 
        
        Recipe::create([
@@ -67,4 +72,65 @@ class RecipeController extends Controller
 
         return redirect()->back()->with("success", "Rețeta a fost salvată cu succes!");
     }
+
+    public function index($id){
+        $recipe = Recipe::findOrFail($id);
+        $user = Auth::user();
+        $comments = $recipe->comments()->latest()->get();
+    
+        // check if user is authenticated and if he already liked the recipe
+        $isLiked = $user ? $recipe->likes()->where('user_id', $user->id)->exists() : false;
+        $isSaved = $user ? $recipe->saves()->where('user_id', $user->id)->exists() : false;
+    
+        return view('recipes.recipe-page', compact('recipe', 'isLiked', 'isSaved', 'comments'));
+    }
+
+    public function like($recipeId){
+        if(!Auth::check()){
+            return redirect()->back()->with(['error'=>"Eroare! Nu esti autentificat"]);
+        }
+        
+        $user = Auth::user();
+        $userFetchedFromDb = User::findorFail($user->id);
+        $recipe = Recipe::find($recipeId);
+        //check if user is authenticated
+        //check if the suer already liked the recipe;
+        $existingLike = Like::where('user_id', $user->id)->where('recipe_id', $recipeId)->first();
+        if($existingLike){
+            $existingLike->delete();
+            $recipe->decrement('likes', 1);
+            $userFetchedFromDb->decrement('likes', 1);
+            
+            return redirect()->back()->with(['success'=>"Rețeta nu mai este apreciată"]);
+        }
+        Like::create([
+            'user_id'=>$user->id,
+            'recipe_id'=>$recipeId,
+        ]);
+        $recipe->increment('likes', 1);
+        $userFetchedFromDb->increment('likes', 1);
+        return redirect()->back()->with(['success'=>"Rețetă apreciată"]);
+    }
+
+    public function save($recipeId){
+        if(!Auth::check()){
+            return redirect()->back()->with(['error'=>"Eroare! Nu esti autentificat"]);
+        }
+        $user = Auth::user();
+        $userFetchedFromDb = User::findOrFail($user->id);
+        $savedRecipe = SavedRecipe::where('user_id', $user->id)->where('recipe_id', $recipeId)->first();
+
+        if($savedRecipe){
+            $savedRecipe->delete();
+            $userFetchedFromDb->decrement('saved_recipes', 1);
+            return redirect()->back()->with(['success'=>"Rețeta nu mai este salvată"]);
+        }
+        SavedRecipe::create([
+            'user_id'=>$user->id,
+            'recipe_id'=>$recipeId,
+        ]);
+        $userFetchedFromDb->increment('saved_recipes', 1);
+        return redirect()->back()->with(['success'=>"Rețeta a fost salvată"]);
+    }
+
 }
