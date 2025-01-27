@@ -26,7 +26,7 @@
                
                <div class="flex flex-col gap-10 absolute top-[40%] md:top-[50%]  px-5 lg:left-20">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Ai o rețetă unică? Împărtășește-o cu comunitatea noastră și inspiră alți pasionați de gătit!</p>
-                    <form action="" method="GET">
+                    <form action="/add-recipe" method="GET">
                         <button type="submit" class="bg-orange-600 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] rounded-lg px-4 py-2 text-lg md:text-2xl lg:text-2xl transition-all hover:bg-orange-700 shadow-2xl hover:translate-x-4"> Adaugă o rețetă</button>
                     </form>
                 </div>
