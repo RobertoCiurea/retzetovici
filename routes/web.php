@@ -1,22 +1,22 @@
 <?php
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
 });
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/my-account', function(Request $request){
-        $content = $request->get('content');
-        return view('my-account', ["content"=>$content]);
-    })->name('my-account');
+    Route::get('/my-account',[UserController::class, 'index'])->name('my-account');
     Route::get('/account-details', function(){
         return redirect('my-account?content=account-details');
     });
@@ -32,6 +32,11 @@ Route::middleware(['auth'])->group(function(){
         return view("add-recipe");
     });
 
+    Route::post('/recipes/{recipeId}/like', [RecipeController::class, 'like'])->name('recipes.recipe.like');
+    Route::post('/recipes/{recipeId}/save', [RecipeController::class, 'save'])->name('recipes.recipe.save');
+    Route::post('/recipes/{recipeId}/comment', [CommentController::class, 'store'])->name('recipes.recipe.comment');
+    Route::delete('/recipes/{commentId}/delete', [CommentController::class, 'delete'])->name('recipes.recipe.delete-comment');
+
     
 Route::put("/user/{userId}/update", [UserController::class, "update"])->name('user.update');
 
@@ -45,6 +50,7 @@ Route::middleware(['alreadyLoggedIn'])->group(function(){
 
 });
 
+Route::get('/recipes/recipe/{recipeId}', [RecipeController::class, "index"])->name('recipes.recipe');
 
 Route::post('/register', [RegisterController::class, "store"]);
 Route::post('/login', [LoginController::class, "login"]);
