@@ -41,6 +41,9 @@ class User extends Authenticatable
         return $this->hasMany(Recipe::class, "user_id");
     }
 
+    public function savedRecipes(){
+        return $this->belongsToMany(Recipe::class, 'saved_recipes')->withTimestamps();
+    }
     /**
      * Get the attributes that should be cast.
      *
