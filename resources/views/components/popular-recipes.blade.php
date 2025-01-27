@@ -7,8 +7,9 @@
         
         <!--Format category like tags-->
         @foreach ($recipes as $recipe)
-        <x-recipe-card 
-        :image="$recipe->image" 
+        <x-recipe-card
+        :id="$recipe->id"
+        :image="$recipe->image"
         :title="$recipe->title" 
         :category="$recipe->category"
         :difficulty="$recipe->difficulty"
