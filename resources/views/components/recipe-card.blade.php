@@ -1,11 +1,11 @@
 <!--Card-->
-<div class="flex flex-col bg-white text-black py-4 px-5 shadow-xl rounded-[20px] font-kanit gap-8">
+<div class="flex flex-col justify-between bg-white text-black py-4 px-5 shadow-xl rounded-[20px] font-kanit gap-8">
     <!--Top content-->
     <div class="flex flex-col gap-6">
         <!--Top section-->
         <div class="flex flex-col gap-1">
             <span class="text-sm uppercase" id="category" >{{$category}}</span>
-            <img src="{{$image}}" alt="{{$title}}" class="rounded-md">
+            <img src="{{$image}}" alt="{{$title}}" class="rounded-md" width="460px" height="260px">
         </div>
         <!--Title and author-->
         <div class="flex flex-col">
@@ -14,9 +14,9 @@
         </div>
     </div>
     <!--Tags-->
-    <div class="flex justify-evenly ">
+    <div class="grid grid-cols-2 gap-2 md:gap-0 md:flex justify-evenly ">
         @foreach ($tags as $tag)
-        <span id="tag" class="text-sm bg-gradient-to-r rounded-xl text-white from-accent to-accentLight px-3 py-1 shadow-lg">{{$tag}}</span>
+        <span id="tag" class="text-xs sm:text-sm bg-gradient-to-r rounded-xl text-center text-white from-accent to-accentLight px-3 py-1 shadow-lg">{{$tag}}</span>
         @endforeach
     </div>
 
@@ -41,10 +41,10 @@
             </span>
         </div>
         <!--Ingredients-->
-        <div class="flex justify-center gap-3 text-sm">
+        <div class="flex flex-col justify-center gap-1 text-sm">
             <p class="font-semibold">Ingrediente</p>
             @foreach ($ingredients as $ingredient)
-                <p>{{$ingredient}}</p>
+                <p class="break-all">{{$ingredient}}</p>
             @endforeach
         </div>
     </div>
@@ -64,7 +64,7 @@
                 <p>{{$likes}}</p>
             </span>
         </div>
-        <form action="" method="GET">
+        <form action="{{route("recipes.recipe", ["recipeId"=> $id])}}" method="GET">
             <button type="submit" class="bg-gradient-to-b from-accentLight to-accent text-white hover:from-orange-700 hover:to-red-700 shadow-xl transition-colors py-1 px-2 rounded-xl">Vezi rețeta</button>
         </form>
     </div>
