@@ -19,8 +19,9 @@ class CommentController extends Controller
             'userId'=>'required',
             'username'=>'required',
             'message'=>['required', 'min:5' ,'max:1024']
+        ],[
+            'message'=>"Dimensiunea comentariului nu este corespunzatoare!",
         ]);
-
         Comment::create([
             'user_id'=>$incomingFields['userId'],
             'username'=>$incomingFields['username'],
