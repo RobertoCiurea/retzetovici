@@ -10,16 +10,20 @@
             </form>
         </li>
         <li class="text-xl text-background drop-shadow-xl flex flex-col group">
-            <button type="button" id="popular-recipes-button">
-                Explorează rețete populare
+            <form action="{{route('recipes.popular-recipes')}}">
+                <button type="submit" id="popular-recipes-button">
+                    Explorează rețete populare
                 </button> 
-            <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
+                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
+            </form>
             </li>
         <li class="text-xl cursor-pointer text-background drop-shadow-xl flex flex-col group">
-           <button type="button" id="categories-button">
-            Categorii
-           </button>
-            <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
+            <form action="{{route('categories')}}">
+                <button type="submit" id="categories-button">
+                    Categorii
+                </button>
+                <span class="w-0 group-hover:w-full block bg-background h-[2px] shadow-xl transition-all duration-500"></span>
+            </form>
             </li>
         <li class="text-xl text-background drop-shadow-xl flex flex-col group">
             <form action="/account-details" method="GET">
