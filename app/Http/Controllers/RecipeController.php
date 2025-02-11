@@ -75,6 +75,7 @@ class RecipeController extends Controller
 
     public function index($id){
         $recipe = Recipe::findOrFail($id);
+        $recipe->increment('views', 1);
         $user = Auth::user();
         $comments = $recipe->comments()->latest()->get();
     
@@ -131,6 +132,17 @@ class RecipeController extends Controller
         ]);
         $userFetchedFromDb->increment('saved_recipes', 1);
         return redirect()->back()->with(['success'=>"Rețeta a fost salvată"]);
+    }
+
+    public function delete($recipeId, Request $request){
+        $userId = $request->input('userId');
+        $user = User::findOrFail($userId);
+        $recipe = Recipe::findOrFail($recipeId);
+        if(!$user || !$recipe)
+            return redirect()->back()->withErrors("Oops... Ceva nu a mers bine!");
+        $recipe->delete();
+        $user->decrement('recipes_counter', 1);
+        return redirect('/recipes')->with(['success'=>'Rețeta a fost ștearsă cu success']);
     }
 
 }
