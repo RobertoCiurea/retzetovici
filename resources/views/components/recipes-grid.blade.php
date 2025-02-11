@@ -1,8 +1,8 @@
-<div class="flex flex-col gap-10 items-center font-kanit mt-5">
+<div class="flex flex-col gap-10 items-center font-kanit pt-10">
     <h1 class="text-xl md:text-2xl lg:text-3xl text-black font-semibold">{{$title}}</h1>
     
     @if (!$recipes->isEmpty())
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5  lg:gap-10 xl:gap-20 ">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 xl:grid-cols-3 ">
             
         @foreach ($recipes as $recipe)
         <x-recipe-card
