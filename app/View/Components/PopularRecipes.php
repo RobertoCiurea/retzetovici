@@ -15,7 +15,7 @@ class PopularRecipes extends Component
     public  $recipes;
     public function __construct(public int $limit = 6)
     {
-        $this->recipes =Recipe::limit($limit)->get();
+        $this->recipes =Recipe::orderBy('views', 'desc')->limit($limit)->get();
   
     }
 
