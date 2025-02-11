@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         "recipe_counter",
         "likes",
+        "role",
         "saved_recipes"
     ];
 
