@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class UserController extends Controller
         }
 
         $user->save();
-
+        Recipe::where("user_id", '=', $userId)->update(['username'=>$request->input('name')]);
         return redirect()->back()->with('success', 'Informațiile au fost actualizate cu succes!');
     }
 
