@@ -5,7 +5,7 @@
             <div class="w-full h-[75vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-1.png)">
                 <div class="flex flex-col gap-10 absolute top-[40%] md:top-[40%]  px-5 lg:left-20">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Descoperă peste 1000 de rețete savuroase, pentru orice ocazie și preferință culinară.</p>
-                    <form action="" method="GET">
+                    <form action="{{route('recipes')}}" method="GET">
                         <button type="submit" class="bg-accent text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] rounded-lg px-4 py-2 text-lg md:text-2xl lg:text-2xl transition-all hover:bg-red-800 shadow-2xl hover:translate-x-4">Explorează rețetele</button>
                     </form>
                 </div>
@@ -37,7 +37,7 @@
               
               <div class="flex flex-col items-center gap-10 absolute top-[40%] md:top-[20%]  px-5 lg:left-20">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">N-ai timp de pierdut? Alege dintre cele mai rapide și sănătoase rețete, pregătite în mai puțin de 30 de minute.</p>
-                    <form action="" method="GET">
+                    <form action="{{route('recipes.fast-recipes')}}" method="GET">
                         <button type="submit" class="bg-purple-700 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] rounded-lg px-4 py-2 text-lg md:text-2xl lg:text-2xl transition-all hover:bg-purple-800 shadow-2xl hover:translate-x-4">Vezi rețete rapide</button>
                     </form>
                 </div>
@@ -48,7 +48,7 @@
               
               <div class="flex flex-col gap-10 absolute top-[30%] md:top-[40%]  px-5 lg:left-[20%]">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Află secretele bucătăriilor internaționale și adu savoarea altor culturi direct în farfuria ta.</p>
-                    <form action="" method="GET">
+                    <form action="{{route('recipes.international-recipes')}}" method="GET">
                         <button type="submit" class="bg-blue-700 text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] rounded-lg px-4 py-2 text-lg md:text-xl lg:text-2xl transition-all hover:bg-blue-800 shadow-2xl hover:translate-x-4">Rețete internaționale</button>
                     </form>
                 </div>
@@ -64,3 +64,7 @@
         <button class="glide__bullet" data-glide-dir="=4"></button>
       </div>
   </div>
+  @push('scripts')
+  @vite(['resources/css/glide.core.min.css'])
+  @vite(['resources/css/glide.theme.min.css'])
+  @endpush
