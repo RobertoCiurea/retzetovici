@@ -10,25 +10,33 @@
           <div class="text-lg font-semibold border-b-2 text-white border-red-400">Bunt venit {{auth()->user()->name}}</div>
                  <!--Account details-->
           <div class="hover:bg-red-400 group transition-colors px-2 pt-2 flex justify-center items-center text-lg">
-            <form action="/account-details" method="GET" class="flex gap-2 items-center">
+            <form action="{{route('redirect.account-details')}}" method="GET" class="flex gap-2 items-center">
               <img src="{{url('icons/account-details-icon.svg')}}" width="30" alt="Detalii cont">
               <button type="submit" class="group-hover:text-white transition-colors">Detalii cont</button>
             </form>
           </div>
                   <!--Account recipes-->
           <div class="hover:bg-red-400 group transition-colors px-2 pt-2 flex justify-center items-center text-lg">
-            <form action="/my-recipes" method="GET" class="flex gap-2 items-center">
+            <form action="{{route('redirect.my-recipes')}}" method="GET" class="flex gap-2 items-center">
               <img src="{{url('icons/my-recipes-icon.svg')}}" width="35" alt="Retetele mele">
               <button type="submit" class="group-hover:text-white transition-colors">Rețetele mele</button>
             </form>
           </div>
                   <!--Saved recipes-->
           <div class="hover:bg-red-400 group transition-colors px-2 pt-2 flex justify-center items-center text-lg">
-            <form action="/saved-recipes" method="GET" class="flex gap-2 items-center">
+            <form action="{{route('redirect.saved-recipes')}}" method="GET" class="flex gap-2 items-center">
               <img src="{{url('icons/saved-recipes-icon.svg')}}" width="35" alt="Retete salvate">
               <button type="submit" class="group-hover:text-white transition-colors">Rețete salvate</button>
             </form>
           </div>
+          @if ($user->role === 'admin')
+          <div class="hover:bg-red-400 group transition-colors px-2 pt-2 flex justify-center items-center text-lg">
+            <form action="{{route('redirect.admin-panel')}}" method="GET" class="flex gap-2 items-center">
+              <img src="{{url('icons/settings-icon.svg')}}" width="30" alt="Retete salvate">
+              <button type="submit" class="group-hover:text-white transition-colors">Admin panel</button>
+            </form>
+          </div>
+          @endif
 
           </div>
           <!--Log out button-->
