@@ -3,9 +3,9 @@
 
     <!---Top back-navigation system-->
         <div class="flex gap-3 pt-10 font-semibold">
-            <a href="/" class="text-accent hover:text-red-800 transition-colors text-lg">Home</a>
+            <a href="/" class="text-accent hover:text-red-800 transition-colors text-lg">Acasă</a>
             <img src="{{url('/icons/side-arrow-icon.svg')}}" alt="<" width="30px">
-            <a href="/recipes" class="text-accent hover:text-red-800 transition-colors text-lg">Recipes</a>
+            <a href="/recipes" class="text-accent hover:text-red-800 transition-colors text-lg">Rețete</a>
             <img src="{{url('/icons/side-arrow-icon.svg')}}" alt="<" width="30px">
             <a href="/recipes/recipe/{{$recipe->id}}" class="text-red-800 font-bold transition-colors text-lg">{{$recipe->title}}</a>
             
@@ -54,6 +54,18 @@
                         
                     }
                 @endphp
+                <!--Status notifications-->
+                        @session('delete-comment-success')
+                        <span class="text-green-600 text-sm md:md:text-base">
+                            {{session('delete-comment-success')}}
+                        </span>
+                        @endsession
+                        @session('comment_success')
+                        <span class="text-green-600 text-sm md:md:text-base">
+                            {{session('comment_success')}}
+                        </span>
+                        @endsession
+
                 <!--Recipe details -->
                 <div class="grid grid-cols-1 rounded-md sm:grid-cols-3 mt-10 bg-accent justify-between px-5 py-3 text-white shadow-xl">
                      <!--Category-->
@@ -155,11 +167,7 @@
                 <div class="flex items-center gap-5 flex-col mt-20">
                     <h1 class=" text-lg md:text-xl lg:text-2xl font-quicksand">Comentarii ({{$recipe->comments_counter}}) <!--Add comments counter to recipe--></h1>
                     <!--foreach each comment-->
-                    @session('delete-comment-success')
-                    <span class="text-green-600 text-sm md:md:text-base">
-                        {{session('delete-comment-success')}}
-                    </span>
-                    @endsession
+     
                     @foreach ($comments as $comment)
                     <div class="md:pl-10 flex flex-col gap-5 md:min-w-[400px] lg:max-w-[500px] max-w-[600px]">
                         <div class="flex flex-col gap-5 bg-white rounded-lg px-5 py-3 shadow-2xl">
@@ -170,12 +178,12 @@
                                 {{-- <p>Publicat pe: <span class="font-semibold">{{$comments->created_at->format('d.m.20y')}}</span></p> --}}
                             </div>
                         @auth
-                        @if ($comment->user_id == Auth::user()->id)
+                        @if ($comment->user_id == Auth::user()->id || Auth::user()->role === 'moderator' || Auth::user()->role === 'admin')
                             
                         <form action="{{route('recipes.recipe.delete-comment', ['commentId'=>$comment->id])}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="text-white px-4 py-1 bg-accent hover:bg-red-700 rounded-xl transition-colors shadow-xl">Șterge</button>
+                            <button type="submit" class="text-white px-4 py-1 bg-accent hover:bg-red-700 rounded-xl transition-colors shadow-xl">Șterge</button>
                         </form>
                         @endif
                         @endauth
@@ -184,16 +192,15 @@
                     @endforeach
                     <!--Add comment form-->
                     @auth
-                    @session('comment_success')
-                    <span class="text-green-600 text-sm md:md:text-base">
-                        {{session('comment_success')}}
-                    </span>
-                    @endsession
+                
                     <div class="flex flex-col gap-5 mt-10">   
                         <h1 class=" text-lg md:text-xl lg:text-2xl font-quicksand">Adaugă un comentariu </h1>
                         <form action="{{route('recipes.recipe.comment', ['recipeId'=>$recipe->id])}}" method="POST" class="flex flex-col gap-5 items-center">
                             @csrf
                             <input type="hidden" name="userId" value="{{auth()->user()->id}}">
+                            @error('message')
+                                <span class="text-red-600 text-sm sm:text-base">{{$message}}</span>
+                            @enderror
                             <input type="hidden" name="username" value="{{auth()->user()->name}}">
                             <textarea name="message" placeholder="Mesajul tău" rows="5" class="min-w-[300px] md:min-w-[400px] lg:min-w-[500px] border-2 border-accentLight rounded-lg shadow-xl px-3 py-2"></textarea>
                             <button type="submit" class="bg-accentLight hover:bg-accent px-2 py-1 text-white rounded-lg shadow-xl">Adaugă comentariul</button>
@@ -203,6 +210,15 @@
                     <h1 class="text-lg md:text-xl text-accent mt-10 transition-colors">Trebuie să fii autentificat pentru a adăuga un comentariu!</h1>
                     @endauth
                 </div>
+                @if (Auth::user()->role === 'admin')
+                    <form action="{{route('recipes.recipe.delete', ['recipeId'=>$recipe->id])}}" method="POST" class="mt-10">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="userId" value="{{$recipe->user_id}}">
+                        <button type="submit" class="text-white px-4 py-1 sm:text-lg bg-accent hover:bg-red-700 rounded-xl transition-colors shadow-xl">Șterge rețeta</button>
+                    </form>
+                    
+                @endif
 
          </div>
     </div>
