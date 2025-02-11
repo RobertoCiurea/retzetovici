@@ -5,7 +5,7 @@
 
     <div class="flex items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/fast-recipes-icon.svg')}}" alt="Retete rapide" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.fast-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Rețete rapide</button>
         </form>
     </div>
@@ -13,7 +13,7 @@
 
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/traditional-recipes-icon.svg')}}" alt="Retete traditionale" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.traditional-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Rețete tradiționale</button>
         </form>
     </div>
@@ -21,7 +21,7 @@
     
     <div class="flex flex-shrink items-center justify-center gap-3 px-3 py-2 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/pizza-recipes-icon.svg')}}" alt="Retete rapide" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.pizza-pasta-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Pizza și paste</button>
         </form>
     </div>
@@ -30,7 +30,7 @@
 
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/fasting-recipes-icon.svg')}}" alt="Retete de post" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.fasting-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Rețete de post</button>
         </form>
     </div>
@@ -38,21 +38,21 @@
 
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/vegan-recipes-icon.svg')}}" alt="Retete rapide" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.vegan-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Rețete vegetariene/vegane</button>
         </form>
     </div>
 
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/soup-recipes-icon.svg')}}" alt="Supe si ciorbe" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.soup-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Supe și ciorbe</button>
         </form>
     </div>
 
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/international-recipes-icon.svg')}}" alt="Retete internationale" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.international-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Rețete internaționale</button>
         </form>
     </div>
@@ -60,7 +60,7 @@
 
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/main-course-recipes-icon.svg')}}" alt="Feluri principale" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.maincourse-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Feluri principale</button>
         </form>
     </div>
@@ -68,14 +68,14 @@
     
     <div class="flex flex-shrink items-center justify-center px-3 py-2 gap-3 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/dessert-recipes-icon.svg')}}" alt="Deserturi" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.dessert-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Deserturi</button>
         </form>
     </div>
 
     <div class="flex flex-shrink items-center gap-3 px-3 py-2 hover:bg-red-500 transition-all duration-200">
         <img src="{{url('/icons/categories/fish-recipes-icon.svg')}}" alt="Peste si frucnte de mare" width="40" height="40">
-        <form action="" method="GET" >
+        <form action="{{route('recipes.fish-recipes')}}" method="GET" >
             <button type="submit" class="text-white font-kanit font-semibold md:text-lg">Pește și fructe de mare</button>
         </form>
     </div>
