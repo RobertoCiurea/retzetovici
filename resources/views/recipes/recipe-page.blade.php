@@ -5,7 +5,7 @@
         <div class="flex gap-3 pt-10 font-semibold">
             <a href="/" class="text-accent hover:text-red-800 transition-colors text-lg">Acasă</a>
             <img src="{{url('/icons/side-arrow-icon.svg')}}" alt="<" width="30px">
-            <a href="/recipes" class="text-accent hover:text-red-800 transition-colors text-lg">Rețete</a>
+            <a href="/recipes/popular-recipes" class="text-accent hover:text-red-800 transition-colors text-lg">Rețete</a>
             <img src="{{url('/icons/side-arrow-icon.svg')}}" alt="<" width="30px">
             <a href="/recipes/recipe/{{$recipe->id}}" class="text-red-800 font-bold transition-colors text-lg">{{$recipe->title}}</a>
             
@@ -210,7 +210,7 @@
                     <h1 class="text-lg md:text-xl text-accent mt-10 transition-colors">Trebuie să fii autentificat pentru a adăuga un comentariu!</h1>
                     @endauth
                 </div>
-                @if (Auth::user()->role === 'admin')
+                @if (Auth::user() && Auth::user()->role === 'admin')
                     <form action="{{route('recipes.recipe.delete', ['recipeId'=>$recipe->id])}}" method="POST" class="mt-10">
                         @csrf
                         @method('DELETE')
