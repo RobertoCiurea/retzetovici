@@ -2,7 +2,6 @@ const categories = document.querySelectorAll('#category');
 const categoriesArray = Array.from(categories)
 categoriesArray.forEach((category) => {
     const label = formatCategory(category.textContent);
-    console.log(category)
     category.textContent = label
 })
 function formatCategory(value) {
