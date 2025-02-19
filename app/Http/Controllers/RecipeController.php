@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
-
+use App\Services\RecipeService;
 use function PHPUnit\Framework\isNull;
 
 class RecipeController extends Controller
@@ -73,16 +73,16 @@ class RecipeController extends Controller
         return redirect()->back()->with("success", "Rețeta a fost salvată cu succes!");
     }
 
-    public function index($id){
+    public static function index($id){
         $recipe = Recipe::findOrFail($id);
         $recipe->increment('views', 1);
+
         $user = Auth::user();
         $comments = $recipe->comments()->latest()->get();
-    
-        // check if user is authenticated and if he already liked the recipe
+
         $isLiked = $user ? $recipe->likes()->where('user_id', $user->id)->exists() : false;
         $isSaved = $user ? $recipe->saves()->where('user_id', $user->id)->exists() : false;
-    
+
         return view('recipes.recipe-page', compact('recipe', 'isLiked', 'isSaved', 'comments'));
     }
 
@@ -143,6 +143,99 @@ class RecipeController extends Controller
         $recipe->delete();
         $user->decrement('recipes_counter', 1);
         return redirect('/recipes')->with(['success'=>'Rețeta a fost ștearsă cu success']);
+    }
+
+    public function showRecipes($category, Request $request){
+        //format category
+        $category = str_replace('-', '_', $category);
+
+        //check if user chaged the category
+    if ($request->filled('category') && $request->category !== $category) {
+        // format category (from _ to -)
+        $newCategory = str_replace('_', '-', $request->category);
+
+        // get all the extra params except for category
+        $queryParams = $request->except('category');
+
+        // redirect to a new category with the rest of the params
+        return redirect()->route('recipes.category', ['category' => $newCategory] + $queryParams);
+    }
+        
+        //create recipe query instance
+        $query = Recipe::query();
+        //get query based on category (a specific category or all recipes)
+        if($category && $category!='popular_recipes'){
+            $query->where('category', $category);
+        }
+
+        if($category == 'popular_recipes'){
+            $query->orderBy('views', 'desc');
+        }
+
+        //manage page titles
+        $titles = [
+            'popular_recipes'=>'Rețete populare',
+            'fast_recipes' => 'Rețete rapide',
+            'fasting_recipes' => 'Rețete de post',
+            'international_recipes' => 'Rețete internaționale',
+            'traditional_recipes' => 'Rețete tradiționale',
+            'vegan_recipes' => 'Rețete vegetariene/vegane',
+            'maincourse_recipes' => 'Feluri principale',
+            'pizza_pasta_recipes' => 'Pizza și paste',
+            'soup_recipes' => 'Supe și ciorbe',
+            'fish_recipes' => 'Pește și fructe de mare',
+            'dessert_recipes' => 'Deserturi',
+        ];
+        $title = $titles[$category] ?? 'Explorează rețete';
+
+        //get difficulty query (if the request has 'all' get all recipes no matter of difficulty)
+
+        if($request->has('difficulty') && $request->difficulty != ''){
+                $query->where('difficulty', $request->difficulty);
+        }
+        //get query based on recipe duration
+        if($request->has('duration')){
+            switch ($request->duration){
+                case 'less-one-hour':
+                    $query->where('duration', '<=', 60 );
+                    break;
+                case 'less-two-hours':
+                    $query->where('duration', '<=', 120 );
+                    break;
+                case 'less-three-hours':
+                    $query->where('duration', '<=', 180 );
+                    break;
+                case 'more-three-hours':
+                    $query->where('duration', '>', 180 );
+                    break;
+                default:
+                break;    
+            }
+        }
+        //sort query based on inputs
+        if($request->has('sort')){
+            switch ($request->sort) {
+                case 'newest':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'oldest':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+                case 'most_popular':
+                    $query->orderBy('views', 'desc');
+                    break;
+                case 'most_liked':
+                    $query->orderBy('likes', 'desc');
+                    break;
+            }
+        }
+        $recipes = $query->get();
+  
+        return view('recipes.recipes-page', [
+            'recipes' => $recipes,
+            'title'=>$title, 
+            'category' => $category,
+        ]);
     }
 
 }
