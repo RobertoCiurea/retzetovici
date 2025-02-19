@@ -52,10 +52,11 @@ Route::middleware(['alreadyLoggedIn'])->group(function(){
     Route::get('/register',[RegisterController::class, "create"])->name('register');
 
 });
-
+//admin logic
 Route::middleware(['admin'])->group(function(){
     Route::get("/admin-panel", [AdminController::class, 'index']);
     Route::get('/user/{userId}/details', [AdminController::class, 'userDetails'])->name("user.details");
+    Route::post('/searchRecipe', [AdminController::class, 'searchRecipe'])->name('recipes.recipe.search');
 });
 
 Route::get('/redirect-admin-panel', function(){
@@ -83,77 +84,81 @@ Route::get('/redirect-categories', function(){
 
 //category recipes routes
 
-    //get all recipes
-Route::get('/recipes', function(){
-    $recipes = Recipe::get();
-    return view('recipes.recipes-page', ['recipes'=>$recipes, 'title'=>'Explorează rețete']);
-});
-    //get popular recipes
-Route::get('/recipes/popular-recipes', function(){
-    $popularRecipes = Recipe::orderBy('views', 'desc')->get();
-    return view('recipes.recipes-page', ['recipes'=>$popularRecipes, 'title'=>"Rețete populare"]);
-});
+//     //get all recipes
+// Route::get('/recipes', function(){
+//     $recipes = Recipe::get();
+//     return view('recipes.recipes-page', ['recipes'=>$recipes, 'title'=>'Explorează rețete']);
+// });
 
-    //get fast recipes
-    Route::get('/recipes/fast-recipes', function(){
-        $fastRecipes = Recipe::where('category', 'fast_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$fastRecipes, 'title'=>"Rețete rapide"]);
-    });
+//get recipes based on category
+Route::get('/recipes/{category}', [RecipeController::class, 'showRecipes'])->name("recipes.category");
 
-    //get fasting recipes
-    Route::get('/recipes/fasting-recipes', function(){
-        $fastingRecipes = Recipe::where('category', 'fasting_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$fastingRecipes, 'title'=>"Rețete de post"]);
-    });
+//  //get popular recipes
+// Route::get('/recipes/popular-recipes', function(){
+//     $popularRecipes = Recipe::orderBy('views', 'desc')->get();
+//     return view('recipes.recipes-page', ['recipes'=>$popularRecipes, 'title'=>"Rețete populare"]);
+// });
 
-    //get international recipes
-    Route::get('/recipes/international-recipes', function(){
-        $internationalRecipes = Recipe::where('category', 'international_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$internationalRecipes, 'title'=>"Rețete internationale"]);
-    });
+//     //get fast recipes
+//     Route::get('/recipes/fast-recipes', function(){
+//         $fastRecipes = Recipe::where('category', 'fast_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$fastRecipes, 'title'=>"Rețete rapide"]);
+//     });
 
-    //get traditional recipes
-    Route::get('/recipes/traditional-recipes', function(){
-        $traditionalRecipes = Recipe::where('category', 'traditional_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$traditionalRecipes, 'title'=>"Rețete tradiționale"]);
-    });
+//     //get fasting recipes
+//     Route::get('/recipes/fasting-recipes', function(){
+//         $fastingRecipes = Recipe::where('category', 'fasting_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$fastingRecipes, 'title'=>"Rețete de post"]);
+//     });
 
-    //get vegan recipes
-    Route::get('/recipes/vegan-recipes', function(){
-        $veganRecipes = Recipe::where('category', 'vegan_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$veganRecipes, 'title'=>"Rețete vegane"]);
-    });
+//     //get international recipes
+//     Route::get('/recipes/international-recipes', function(){
+//         $internationalRecipes = Recipe::where('category', 'international_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$internationalRecipes, 'title'=>"Rețete internationale"]);
+//     });
 
-    //get maincourse recipes
-    Route::get('/recipes/maincourse-recipes', function(){
-        $maincourseRecipes = Recipe::where('category', 'maincourse_recipes')->get();
+//     //get traditional recipes
+//     Route::get('/recipes/traditional-recipes', function(){
+//         $traditionalRecipes = Recipe::where('category', 'traditional_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$traditionalRecipes, 'title'=>"Rețete tradiționale"]);
+//     });
+
+//     //get vegan recipes
+//     Route::get('/recipes/vegan-recipes', function(){
+//         $veganRecipes = Recipe::where('category', 'vegan_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$veganRecipes, 'title'=>"Rețete vegane"]);
+//     });
+
+//     //get maincourse recipes
+//     Route::get('/recipes/maincourse-recipes', function(){
+//         $maincourseRecipes = Recipe::where('category', 'maincourse_recipes')->get();
  
-        return view('recipes.recipes-page', ['recipes'=>$maincourseRecipes, 'title'=>"Feluri principale"]);
-    });
+//         return view('recipes.recipes-page', ['recipes'=>$maincourseRecipes, 'title'=>"Feluri principale"]);
+//     });
 
-    //get pizza-pasta recipes
-    Route::get('/recipes/pizza-pasta-recipes', function(){
-        $pizzaPastaRecipes = Recipe::where('category', 'pizza_pasta_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$pizzaPastaRecipes, 'title'=>"Pizza și paste"]);
-    });
+//     //get pizza-pasta recipes
+//     Route::get('/recipes/pizza-pasta-recipes', function(){
+//         $pizzaPastaRecipes = Recipe::where('category', 'pizza_pasta_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$pizzaPastaRecipes, 'title'=>"Pizza și paste"]);
+//     });
 
-    //get soup recipes
-    Route::get('/recipes/soup-recipes', function(){
-        $soupRecipes = Recipe::where('category', 'soup_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$soupRecipes, 'title'=>"Supe și ciorbe"]);
-    });
+//     //get soup recipes
+//     Route::get('/recipes/soup-recipes', function(){
+//         $soupRecipes = Recipe::where('category', 'soup_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$soupRecipes, 'title'=>"Supe și ciorbe"]);
+//     });
 
-    //get fish recipes
-    Route::get('/recipes/fish-recipes', function(){
-        $fishRecipes = Recipe::where('category', 'fish_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$fishRecipes, 'title'=>"Pește și fructe de mare"]);
-    });
+//     //get fish recipes
+//     Route::get('/recipes/fish-recipes', function(){
+//         $fishRecipes = Recipe::where('category', 'fish_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$fishRecipes, 'title'=>"Pește și fructe de mare"]);
+//     });
 
-    //get dessert recipes
-    Route::get('/recipes/dessert-recipes', function(){
-        $dessertRecipes = Recipe::where('category', 'dessert_recipes')->get();
-        return view('recipes.recipes-page', ['recipes'=>$dessertRecipes, 'title'=>"Deserturi"]);
-    });
+//     //get dessert recipes
+//     Route::get('/recipes/dessert-recipes', function(){
+//         $dessertRecipes = Recipe::where('category', 'dessert_recipes')->get();
+//         return view('recipes.recipes-page', ['recipes'=>$dessertRecipes, 'title'=>"Deserturi"]);
+//     });
 
     
 
@@ -167,12 +172,12 @@ Route::get('/redirect-recipes', function(){
 
     //popular recipes
 Route::get('/redirect-popular-recipes', function(){
-    return redirect('/recipes/popular-recipes');
+    return redirect('/recipes/popular_recipes');
 })->name('recipes.popular-recipes');
 
     //fast recipes
 Route::get('/redirect-fast-recipes', function(){
-    return redirect('/recipes/fast-recipes');
+    return redirect('/recipes/fast_recipes');
 })->name('recipes.fast-recipes');
 
     //fasting recipes
