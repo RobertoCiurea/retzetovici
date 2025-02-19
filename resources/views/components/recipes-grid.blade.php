@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-10 items-center font-kanit pt-10">
     <h1 class="text-xl md:text-2xl lg:text-3xl text-black font-semibold">{{$title}}</h1>
-    
+    <x-filters/>
     @if (!$recipes->isEmpty())
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 xl:grid-cols-3 ">
             
