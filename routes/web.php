@@ -8,9 +8,12 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NewsletterController;
+use App\Models\Contact;
+use Illuminate\Http\Request;
 use Illuminate\Types\Relations\Role;
 
 Route::get('/', function () {
@@ -57,6 +60,20 @@ Route::middleware(['admin'])->group(function(){
     Route::get("/admin-panel", [AdminController::class, 'index']);
     Route::get('/user/{userId}/details', [AdminController::class, 'userDetails'])->name("user.details");
     Route::post('/searchRecipe', [AdminController::class, 'searchRecipe'])->name('recipes.recipe.search');
+
+    Route::delete('/delete-contact/{contactId}', [ContactController::class, 'delete'])->name('contact.delete');
+
+    //user messages for staff
+    Route::get("/messages/{type}", function($type){
+        switch($type){
+            case 'contact':
+                $contacts = Contact::get();
+                return view('admin-messages', compact('contacts'));
+            case 'report':
+                //do report case later
+                break;    
+        }
+    });
 });
 
 Route::get('/redirect-admin-panel', function(){
@@ -231,3 +248,8 @@ Route::post('/register', [RegisterController::class, "store"]);
 Route::post('/login', [LoginController::class, "login"]);
 Route::post('/logout', [LogOutController::class, "logout"])->name("logout");
 Route::post('/create-recipe', [RecipeController::class, "store" ])->name('create-recipe');
+
+//contact routes
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact', [ContactController::class, 'store'])->name('contact');
+
