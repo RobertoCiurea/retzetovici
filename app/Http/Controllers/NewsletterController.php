@@ -24,6 +24,6 @@ class NewsletterController extends Controller
     
 );
 
-        return redirect()->back()->with(['success'=>"Email-ul tău este conectat cu success la newsletter!"]);
+        return redirect()->back()->with(['newsletter_success'=>"Email-ul tău este conectat cu success la newsletter!"]);
     }
 }
