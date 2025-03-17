@@ -52,8 +52,8 @@
             @error('email')
                 <span class="text-yellow-500 text-sm sm:text-base">{{$message}}</span>
             @enderror
-            @session('success')
-                <span class="text-green-600 text-sm sm:text-base">{{session('success')}}</span>
+            @session('newsletter_success')
+                <span class="text-green-600 text-sm sm:text-base">{{session('newsletter_success')}}</span>
             @endsession
             <div class="bg-white px-3 mt-3 py-1 rounded-lg flex gap-2 focus-within:border-2 focus-within:border-black  text-black">
                 <input type="email" name="email" class="bg-transparent focus:outline-none  px-2" placeholder="Email-ul tău...">
@@ -93,7 +93,7 @@
                 <a href="">Despre noi</a>
             </li>
             <li class="hover:text-gray-400 hover:translate-x-2 transition-all">
-                <a href="">Contactează-ne</a>
+                <a href="/contact">Contactează-ne</a>
             </li>
             <li class="hover:text-gray-400 hover:translate-x-2 transition-all">
                 <a href="">Raportează o problema</a>
