@@ -12,7 +12,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ReportController;
 use App\Models\Contact;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Types\Relations\Role;
 
@@ -70,7 +72,8 @@ Route::middleware(['admin'])->group(function(){
                 $contacts = Contact::get();
                 return view('admin-messages', compact('contacts'));
             case 'report':
-                //do report case later
+                $reports = Report::get();
+                return view("admin-reports", compact("reports"));
                 break;    
         }
     });
@@ -253,3 +256,6 @@ Route::post('/create-recipe', [RecipeController::class, "store" ])->name('create
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store'])->name('contact');
 
+//report problem routes
+Route::get('/report-problem', [ReportController::class, 'index'])->name('report.index');
+Route::post('/report-problem', [ReportController::class, 'store'])->name('report.store');
