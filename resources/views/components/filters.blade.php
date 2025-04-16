@@ -1,5 +1,5 @@
 <div class="flex justify-evenly w-full">
-<x-modal :openButton="'Filtre'">
+<x-modal :openButton="'Filtre'" :openButtonStyles="''">
 <form action="{{url()->current()}}" method="GET" class="flex flex-col items-start">
     <h1 class="font-quicksand text-lg md:text-xl">Filtre</h1>
     <!--Filters-->
