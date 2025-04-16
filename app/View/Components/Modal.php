@@ -12,10 +12,12 @@ class Modal extends Component
      * Create a new component instance.
      */
     public string $openButton;
+    public string $openButtonStyles;
 
-    public function __construct($openButton)
+    public function __construct($openButton, $openButtonStyles)
     {
             $this->openButton = $openButton;
+            $this->openButtonStyles=$openButtonStyles;
 
     }
 
