@@ -18,6 +18,7 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Types\Relations\Role;
 
+
 Route::get('/', function () {
     return view('home');
 });
@@ -77,6 +78,11 @@ Route::middleware(['admin'])->group(function(){
                 break;    
         }
     });
+
+    //report admin side
+    Route::post("/report/{id}/update-status", [ReportController::class, "update"])->name('report.update-status');
+    Route::post("/report/{id}/delete", [ReportController::class, "delete"])->name("report.delete");
+    Route::get("/report/{id}/details",[ReportController::class, "details"])->name("report.details");
 });
 
 Route::get('/redirect-admin-panel', function(){
@@ -192,12 +198,12 @@ Route::get('/redirect-recipes', function(){
 
     //popular recipes
 Route::get('/redirect-popular-recipes', function(){
-    return redirect('/recipes/popular_recipes');
+    return redirect('/recipes/popular-recipes');
 })->name('recipes.popular-recipes');
 
     //fast recipes
 Route::get('/redirect-fast-recipes', function(){
-    return redirect('/recipes/fast_recipes');
+    return redirect('/recipes/fast-recipes');
 })->name('recipes.fast-recipes');
 
     //fasting recipes
