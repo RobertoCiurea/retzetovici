@@ -14,6 +14,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 use App\Services\RecipeService;
+use Illuminate\Support\Facades\File;
+
 use function PHPUnit\Framework\isNull;
 
 class RecipeController extends Controller
@@ -140,6 +142,9 @@ class RecipeController extends Controller
         $recipe = Recipe::findOrFail($recipeId);
         if(!$user || !$recipe)
             return redirect()->back()->withErrors("Oops... Ceva nu a mers bine!");
+        $imagePath = public_path($recipe->image);
+        if(File::exists($imagePath))
+            File::delete($imagePath);
         $recipe->delete();
         $user->decrement('recipes_counter', 1);
         return redirect('/recipes')->with(['success'=>'Rețeta a fost ștearsă cu success']);
