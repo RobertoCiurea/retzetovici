@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Report;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
+
 
 class ReportController extends Controller
 {
@@ -53,6 +56,45 @@ class ReportController extends Controller
         ]);
         return redirect()->back()->with(['success'=>'Problema dumneavoastră a fost raportată cu success!']);
     }
-   
+    
+    public function update($id, Request $request):RedirectResponse{
+        $incomingFields =$request->validate([
+            'status' => ['required', Rule::in(['resolved', 'unresolved', 'in-process'])],
+        ]);
+        $report = Report::findOrFail($id);
+        if($report){
+            $report->status = $incomingFields['status'];
+            $report->save();
+            return redirect()->back()->with(['success'=>"Status modificat cu success"]);
+        }else{
+            return redirect()->back()->with(["error"=>"Reportul nu a fost gasit"]);
+        }
+    }
+
+    public function delete($id):RedirectResponse{
+        $report = Report::findOrFail($id);
+        if($report){
+            //remove image from public disk storage
+            $imagePath = public_path($report->image);
+            if(File::exists($imagePath)){
+                File::delete($imagePath);
+            }
+
+            $report->delete();
+            return redirect()->back()->with(["success"=>"Report sters cu succes!"]); 
+        }else{
+            return redirect()->back()->with(["error"=>"Reportul nu a fost gasit"]);
+        }
+    }
+
+    public function details($id){
+        $report = Report::findOrFail($id);
+        if($report){
+            $report->delete();
+            return view('report-details-page');
+        }else{
+            return redirect()->back()->with(["error"=>"Oops... Ceva nu a mers bine!"]);
+        }
+    }
 
 }
