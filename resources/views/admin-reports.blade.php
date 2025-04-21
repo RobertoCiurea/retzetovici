@@ -19,7 +19,9 @@
             </span>
         @endsession
 
-        <section class="mt-20 flex w-full justify-around font-mono text-black">
+        <section
+            class="mt-20 flex w-full flex-col justify-around gap-5 font-mono text-black md:flex-row md:gap-0"
+        >
             <form action="" method="GET" class="group flex flex-col gap-1">
                 <button type="submit" class="md:text-xl">
                     Report-uri nerezolvate
@@ -69,7 +71,7 @@
     </div>
     <div class="mt-20 flex w-full justify-center">
         <div
-            class="nd:grid-cols-2 grid grid-cols-1 gap-5 md:gap-20 lg:grid-cols-3"
+            class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-20 xl:grid-cols-3"
         >
             @foreach ($reports as $report)
                 @if (! $selectedContent || strtolower($report->status) === $selectedContent)
@@ -78,7 +80,7 @@
                         :title="$report->title"
                         :name="$report->name"
                         :email="$report->email"
-                        :date="$report->created_at->format('d-m-20-y')"
+                        :date="$report->created_at->format('d-m-20y')"
                         :status="$report->status"
                         :image="$report->image"
                     />
