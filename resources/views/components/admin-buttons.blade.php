@@ -1,4 +1,20 @@
-<div class="flex flex-col md:flex-row w-full justify-center gap-10">
-    <a href="/messages/contact"><button type="button" class="px-2 py-1 md:text-lg bg-accentLight hover:bg-accent transition-colors rounded-md text-white shadow-xl">Mesaje Contact</button></a>
-    <a href="/messages/report"><button type="button" class="px-2 py-1 md:text-lg bg-accentLight hover:bg-accent transition-colors rounded-md text-white shadow-xl">Mesaje Report</button></a>
+<div
+    class="flex w-full flex-col items-center justify-center gap-10 md:flex-row"
+>
+    <a href="/messages/contact">
+        <button
+            type="button"
+            class="rounded-md bg-accentLight px-2 py-1 text-white shadow-xl transition-colors hover:bg-accent md:text-lg"
+        >
+            Mesaje Contact
+        </button>
+    </a>
+    <a href="/messages/report">
+        <button
+            type="button"
+            class="rounded-md bg-accentLight px-2 py-1 text-white shadow-xl transition-colors hover:bg-accent md:text-lg"
+        >
+            Mesaje Report
+        </button>
+    </a>
 </div>
