@@ -31,7 +31,6 @@ class ReportController extends Controller
 
         //format image
         if($request->hasFile('image')){
-
             $image=Image::read($incomingFields['image']);
             $imageName = time().'.'.$incomingFields['image']->getCLientOriginalExtension();
             
@@ -44,14 +43,16 @@ class ReportController extends Controller
             $imageData = (string) $resizedImage->encode();
             Storage::disk('public')->put($path, $imageData);
             $imageUrl = Storage::url($path);
-            
+            $incomingFields['image'] =$imageUrl;
+        }else{
+            $incomingFields['image']='https://placehold.co/600x400/EEE/31343C?font=raleway&text=Report';
         }
         Report::create([
             'name'=>$incomingFields['name'],
             'email'=>$incomingFields['email'],
             'title'=>$incomingFields['title'],
             'url'=>$incomingFields['url'] ? $incomingFields['url'] : NULL,
-            'image'=>$incomingFields['image'] ? $imageUrl : 'https://placehold.co/600x400/EEE/31343C?font=raleway&text=Report',
+            'image'=>$incomingFields['image'],
             'description'=>$incomingFields['description'],
         ]);
         return redirect()->back()->with(['success'=>'Problema dumneavoastră a fost raportată cu success!']);
@@ -90,8 +91,7 @@ class ReportController extends Controller
     public function details($id){
         $report = Report::findOrFail($id);
         if($report){
-            $report->delete();
-            return view('report-details-page');
+            return view('report-details-page', compact('report'));
         }else{
             return redirect()->back()->with(["error"=>"Oops... Ceva nu a mers bine!"]);
         }
