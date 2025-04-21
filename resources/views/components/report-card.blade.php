@@ -3,7 +3,7 @@
         'border-2 border-green-700' => strtolower($status) === 'resolved',
         'border-2 border-accent' => strtolower($status) === 'unresolved',
         'border-2 border-yellow-500' => strtolower($status) === 'in-process',
-        'flex min-w-[400px] max-w-[450px] flex-col rounded-lg bg-white px-6 py-5 shadow-xl'
+        'flex min-w-[300px]  md:max-w-[450px] flex-col rounded-lg bg-white px-6 py-5 shadow-xl mx-2'
     ])
 >
     <!--Image section-->
@@ -24,12 +24,13 @@
     </div>
 
     <!--Buttons-->
-    <div class="flex w-full justify-between px-16 pt-14">
+    <div class="flex flex-col gap-5 md:gap-0 md:flex-row w-full justify-between px-5 md:px-16 pt-14">
         <!--Details buttons-->
         <form action="{{ route("report.details", ["id"=>$id]) }}" method="GET">
             <button
                 type="submit"
-                class="rounded-lg bg-green-600 px-2 py-1 font-quicksand text-white transition-colors hover:bg-green-700"
+                id="details-button"
+                class="rounded-lg bg-green-600 px-2 py-1 font-quicksand text-white transition-colors hover:bg-green-700 w-full"
             >
                 Detalii
             </button>
@@ -41,13 +42,13 @@
             <h1>Esti sigur ca vrei sa stergi definitiv acest report? (ID: {{ $id }})</h1>
             <form action="{{ route('report.delete', ["id"=>$id]) }}" method="POST">
                 @csrf
-                <button type="submit" class="rounded-lg bg-accent px-3 py-1 font-quicksand text-white transition-colors hover:bg-red-800">Șterge report</button>
+                <button type="submit" id="delete-button" class="rounded-lg bg-accent px-3 py-1 font-quicksand text-white transition-colors hover:bg-red-800">Șterge report</button>
             </form>
         </div>
      </x-modal>
     </div>
     <!--Status section-->
-    <section class="mt-5 flex w-full justify-between">
+    <section class="mt-5 flex flex-col gap-10 md:gap-0 md:flex-row w-full justify-between">
         <h1 class="font-quicksand font-bold uppercase text-black">
             STATUS:
 
