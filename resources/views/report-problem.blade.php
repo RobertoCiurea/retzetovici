@@ -68,7 +68,7 @@
 
          
             <button type="submit" class="bg-green-700 hover:bg-green-800  text-white font-mono rounded-lg shadow-xl text-lg px-3 py-1">Trimite</button>
-            <p class="text-sm sm:text-base">Sau ne poți scrie și la adresa de email: <a class="text-blue-800 hover:text-purple-900 transition-colors" href="mailto:ciurearobertoionut@hotmail.com?subject=Mesaj%20pentru%20dvs.">ciurearobertoionut@hotmail.com</a></p>
+            <p class="text-sm text-center sm:text-base">Sau ne poți scrie și la adresa de email: <a class="text-blue-800 hover:text-purple-900 transition-colors" href="mailto:ciurearobertoionut@hotmail.com?subject=Mesaj%20pentru%20dvs.">ciurearobertoionut@hotmail.com</a></p>
         </div>
         </form>
     </div>
