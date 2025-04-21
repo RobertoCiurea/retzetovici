@@ -213,19 +213,19 @@
         <!--Left section-->
         <ul class="flex flex-col gap-2 pl-5 sm:pl-0">
             <li class="transition-all hover:translate-x-2 hover:text-gray-400">
-                <a href="">Termeni și condiții</a>
+                <a href="/terms-and-conditions">Termeni și condiții</a>
             </li>
             <li class="transition-all hover:translate-x-2 hover:text-gray-400">
-                <a href="">Politica cookies</a>
+                <a href="/cookie-policy">Politica cookies</a>
             </li>
             <li class="transition-all hover:translate-x-2 hover:text-gray-400">
-                <a href="">Politica de confidențialitate</a>
+                <a href="/privacy-policy">Politica de confidențialitate</a>
             </li>
         </ul>
         <!--Right section-->
         <ul class="flex flex-col gap-2 text-start">
             <li class="transition-all hover:translate-x-2 hover:text-gray-400">
-                <a href="">Despre noi</a>
+                <a href="/about-us">Despre noi</a>
             </li>
             <li class="transition-all hover:translate-x-2 hover:text-gray-400">
                 <a href="/contact">Contactează-ne</a>
