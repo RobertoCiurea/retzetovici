@@ -14,7 +14,7 @@ use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
-    public function create():View{
+    public function index():View{
         return view('auth.register');
     }
 

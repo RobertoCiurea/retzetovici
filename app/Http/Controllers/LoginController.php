@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function create():View{
+    public function index():View{
         return view('auth.login');
     }
     public function login(Request $request):RedirectResponse{
