@@ -53,9 +53,9 @@ Route::delete("/user/{userId}/delete", [UserController::class, "delete"])->name(
 });
 
 Route::middleware(['alreadyLoggedIn'])->group(function(){
-    Route::get('/login',[LoginController::class, "create"])->name('login');
+    Route::get('/login',[LoginController::class, "index"])->name('login');
     
-    Route::get('/register',[RegisterController::class, "create"])->name('register');
+    Route::get('/register',[RegisterController::class, "index"])->name('register');
 
 });
 //admin logic
@@ -265,3 +265,20 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact');
 //report problem routes
 Route::get('/report-problem', [ReportController::class, 'index'])->name('report.index');
 Route::post('/report-problem', [ReportController::class, 'store'])->name('report.store');
+
+//terms and conditions
+Route::get("/terms-and-conditions", function(){
+    return view("terms-conditions");
+});
+//privacy policy
+Route::get("/privacy-policy", function(){
+    return view("privacy-policy");
+});
+//cookie policy
+Route::get("/cookie-policy", function(){
+    return view("cookie-policy");
+});
+//about us
+Route::get("/about-us", function(){
+    return view("about-us");
+});
