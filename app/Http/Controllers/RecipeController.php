@@ -23,7 +23,7 @@ class RecipeController extends Controller
 
     public function store(Request $request):RedirectResponse{
         $incomingFields = $request->validate([
-            'title'=>'required|string|max:35',
+            'title'=>'required|string|max:255',
             'description'=>'required|string',
             'category'=>'required',
             'ingredients'=>'required|array',
@@ -147,7 +147,7 @@ class RecipeController extends Controller
             File::delete($imagePath);
         $recipe->delete();
         $user->decrement('recipes_counter', 1);
-        return redirect('/recipes')->with(['success'=>'Rețeta a fost ștearsă cu success']);
+        return redirect('/recipes/popular-recipes')->with(['success'=>'Rețeta a fost ștearsă cu success']);
     }
 
     public function showRecipes($category, Request $request){
