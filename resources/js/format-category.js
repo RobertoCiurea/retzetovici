@@ -1,10 +1,12 @@
-const categories = document.querySelectorAll('#category');
-const categoriesArray = Array.from(categories)
-categoriesArray.forEach((category) => {
-    const label = formatCategory(category.textContent);
+const categories = document.querySelectorAll('[data-category]');
+
+categories.forEach((category) => {
+    const label = formatCategory(category.textContent.trim());
     category.textContent = label
 })
 function formatCategory(value) {
+ 
+    console.log(value)
     switch (value) {
         case "fast_recipes":
             return "Rețete rapide";
