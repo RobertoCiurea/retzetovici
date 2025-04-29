@@ -3,7 +3,6 @@ const tags = document.querySelectorAll('[data-tag]');
 tags.forEach((tag) => {
     const label = formatTag(tag.textContent.trim())
     tag.textContent = label;
-    console.log(label)
 
 })
 
