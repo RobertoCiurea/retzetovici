@@ -1,9 +1,10 @@
-const tags = document.querySelectorAll('#tag');
-const tagsArray = Array.from(tags)
+const tags = document.querySelectorAll('[data-tag]');
 
-tagsArray.forEach((tag) => {
-    const label = formatTag(tag.textContent)
+tags.forEach((tag) => {
+    const label = formatTag(tag.textContent.trim())
     tag.textContent = label;
+    console.log(label)
+
 })
 
 function formatTag(value) {

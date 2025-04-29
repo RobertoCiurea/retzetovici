@@ -33,7 +33,7 @@
     <div class="grid grid-cols-2 justify-evenly gap-2 md:flex md:gap-0">
         @foreach ($tags as $tag)
             <span
-                id="tag"
+                data-tag="{{ $tag }}"
                 class="rounded-xl bg-gradient-to-r from-accent to-accentLight px-3 py-1 text-center text-xs text-white shadow-lg sm:text-sm"
             >
                 {{ $tag }}
