@@ -14,7 +14,7 @@
                 {{ $category }}
             </span>
             <img
-                src="{{ $image }}"
+                src="{{ asset($image) }}"
                 alt="{{ $title }}"
                 class="rounded-md"
                 width="460px"
