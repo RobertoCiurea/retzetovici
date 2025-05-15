@@ -8,7 +8,7 @@
 
     @if (! $recipes->isEmpty())
         <div
-            class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3"
+            class="grid grid-cols-1 px-10 md:px-20 gap-5 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3"
         >
             @foreach ($recipes as $recipe)
                 <x-recipe-card

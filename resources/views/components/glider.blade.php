@@ -2,7 +2,7 @@
     <div data-glide-el="track" class="glide__track">
       <ul class="glide__slides">
         <li class="glide__slide">
-            <div class="w-full h-[75vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-1.png)">
+            <div class="w-full h-[95vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-1.png)">
                 <div class="flex flex-col gap-10 absolute top-[40%] md:top-[40%]  px-5 lg:left-20">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Descoperă peste 1000 de rețete savuroase, pentru orice ocazie și preferință culinară.</p>
                     <form action="{{route('recipes')}}" method="GET">
@@ -12,7 +12,7 @@
             </div>
         </li>
         <li class="glide__slide">
-            <div class="w-full h-[75vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-2.png)">
+            <div class="w-full h-[95vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-2.png)">
                
                <div class="flex flex-col gap-10 items-start absolute top-[40%] md:top-[30%]  px-5 lg:left-[30%]">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Alătură-te comunității noastre culinare. Creează-ți contul și începe să aduni colecția ta de rețete!</p>
@@ -22,7 +22,7 @@
                 </div>
 
         <li class="glide__slide">
-            <div class="w-full h-[75vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-3.png)">
+            <div class="w-full h-[95vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-3.png)">
                
                <div class="flex flex-col gap-10 absolute top-[40%] md:top-[50%]  px-5 lg:left-20">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Ai o rețetă unică? Împărtășește-o cu comunitatea noastră și inspiră alți pasionați de gătit!</p>
@@ -33,7 +33,7 @@
             </div>
         </li>
         <li class="glide__slide">
-            <div class="w-full h-[75vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-4.png)">
+            <div class="w-full h-[95vh] relative bg-cover bg-center" style="background-image: url(/images/slider/slider-image-4.png)">
               
               <div class="flex flex-col items-center gap-10 absolute top-[40%] md:top-[20%]  px-5 lg:left-20">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">N-ai timp de pierdut? Alege dintre cele mai rapide și sănătoase rețete, pregătite în mai puțin de 30 de minute.</p>
@@ -44,7 +44,7 @@
             </div>
         </li>
         <li class="glide__slide">
-            <div class="w-full h-[75vh] relative lg:bg-center" style="background-image: url(/images/slider/slider-image-5.png)">
+            <div class="w-full h-[95vh] relative lg:bg-center" style="background-image: url(/images/slider/slider-image-5.png)">
               
               <div class="flex flex-col gap-10 absolute top-[30%] md:top-[40%]  px-5 lg:left-[20%]">
                     <p class=" font-bold  text-2xl md:text-3xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  text-white">Află secretele bucătăriilor internaționale și adu savoarea altor culturi direct în farfuria ta.</p>
