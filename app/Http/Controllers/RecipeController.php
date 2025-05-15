@@ -45,7 +45,7 @@ class RecipeController extends Controller
             $constraint->aspectRatio();
             $constraint->upsize(); 
         });
-        $path ='/images/recipes/'.$imageName;
+        $path ='images/recipes/'.$imageName;
         //Convert image to string
         $imageData = (string) $resizedImage->encode();
         Storage::disk('public')->put($path, $imageData);
